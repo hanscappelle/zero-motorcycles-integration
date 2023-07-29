@@ -20,7 +20,7 @@ Because we can!
 Here is a picture of my 14.4 kWh Zero SRF premium with charge tank for 12 kW
 maximum charging power (if conditions are met).
 
-!(motorcycle picture)[https://i.ibb.co/zmYvXtP/DSCF0397.jpg]
+!(https://i.ibb.co/zmYvXtP/DSCF0397.jpg)
 
 ## Notice
 
