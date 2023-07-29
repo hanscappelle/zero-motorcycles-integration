@@ -1,4 +1,4 @@
-"""DataUpdateCoordinator for integration_blueprint."""
+"""DataUpdateCoordinator for zero_motorcycles_integration."""
 from __future__ import annotations
 
 from datetime import timedelta
