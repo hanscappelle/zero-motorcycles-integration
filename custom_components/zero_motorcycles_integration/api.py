@@ -1,4 +1,4 @@
-"""Sample API Client."""
+"""Mongol or starcom API"""
 from __future__ import annotations
 
 import asyncio
@@ -8,24 +8,20 @@ import aiohttp
 import async_timeout
 
 
-class IntegrationBlueprintApiClientError(Exception):
+class ZeroApiClientError(Exception):
     """Exception to indicate a general API error."""
 
 
-class IntegrationBlueprintApiClientCommunicationError(
-    IntegrationBlueprintApiClientError
-):
+class ZeroApiClientCommunicationError(ZeroApiClientError):
     """Exception to indicate a communication error."""
 
 
-class IntegrationBlueprintApiClientAuthenticationError(
-    IntegrationBlueprintApiClientError
-):
+class ZeroApiClientAuthenticationError(ZeroApiClientError):
     """Exception to indicate an authentication error."""
 
 
-class IntegrationBlueprintApiClient:
-    """Sample API Client."""
+class ZeroApiClient:
+    """Starcom API"""
 
     def __init__(
         self,
@@ -33,24 +29,28 @@ class IntegrationBlueprintApiClient:
         password: str,
         session: aiohttp.ClientSession,
     ) -> None:
-        """Sample API Client."""
         self._username = username
         self._password = password
         self._session = session
 
-    async def async_get_data(self) -> any:
-        """Get data from the API."""
+    async def async_get_units(self) -> any:
+        """Get available unit numbers for given credentials from API."""
         return await self._api_wrapper(
-            method="get", url="https://jsonplaceholder.typicode.com/posts/1"
+            method="get",
+            url="https://mongol.brono.com/mongol/api.php?commandname=get_units&format=json&user="
+            + self._username
+            + "&pass="
+            + self._password,
         )
 
-    async def async_set_title(self, value: str) -> any:
-        """Get data from the API."""
+    async def async_get_last_transmit(self) -> any:
+        """Get available available data from API."""
         return await self._api_wrapper(
-            method="patch",
-            url="https://jsonplaceholder.typicode.com/posts/1",
-            data={"title": value},
-            headers={"Content-type": "application/json; charset=UTF-8"},
+            method="get",
+            url="https://mongol.brono.com/mongol/api.php?commandname=get_last_transmit&format=json&user="
+            + self._username
+            + "&pass="
+            + self._password,
         )
 
     async def _api_wrapper(
@@ -69,22 +69,20 @@ class IntegrationBlueprintApiClient:
                     headers=headers,
                     json=data,
                 )
-                if response.status in (401, 403):
-                    raise IntegrationBlueprintApiClientAuthenticationError(
+                if response.status in (401, 403, 601):
+                    raise ZeroApiClientAuthenticationError(
                         "Invalid credentials",
                     )
                 response.raise_for_status()
                 return await response.json()
 
         except asyncio.TimeoutError as exception:
-            raise IntegrationBlueprintApiClientCommunicationError(
+            raise ZeroApiClientCommunicationError(
                 "Timeout error fetching information",
             ) from exception
         except (aiohttp.ClientError, socket.gaierror) as exception:
-            raise IntegrationBlueprintApiClientCommunicationError(
+            raise ZeroApiClientCommunicationError(
                 "Error fetching information",
             ) from exception
         except Exception as exception:  # pylint: disable=broad-except
-            raise IntegrationBlueprintApiClientError(
-                "Something really wrong happened!"
-            ) from exception
+            raise ZeroApiClientError("Something really wrong happened!") from exception

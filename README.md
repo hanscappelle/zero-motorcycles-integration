@@ -4,6 +4,11 @@ This project is an attempt to create an integration to consume services provided
 Zero Motorcycles for their 3rd gen electric motorcycles that come with integrated
 cellular connection and cloud service.
 
+## How
+
+All you need for this integration to work is your login. That is the username
+and password you use for your app.
+
 Some information about these services can be found in the documentation of this
 project: https://bitbucket.org/cappelleh/zengo-android/src/master/
 
