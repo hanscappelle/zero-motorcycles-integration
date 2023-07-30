@@ -43,7 +43,7 @@ class ZeroApiClient:
             + self._password,
         )
 
-    async def async_get_last_transmit(self) -> any:
+    async def async_get_last_transmit(self, unitnumber) -> any:
         """Get available available data from API."""
         return await self._api_wrapper(
             method="get",
@@ -51,7 +51,8 @@ class ZeroApiClient:
             + self._username
             + "&pass="
             + self._password
-            + "&unitnumber=",
+            + "&unitnumber="
+            + unitnumber,
         )
 
     async def _api_wrapper(

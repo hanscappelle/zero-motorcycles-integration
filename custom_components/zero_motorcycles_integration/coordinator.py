@@ -40,7 +40,7 @@ class ZeroCoordinator(DataUpdateCoordinator):
             hass=hass,
             logger=LOGGER,
             name=DOMAIN,
-            update_interval=timedelta(minutes=5),
+            update_interval=timedelta(minutes=1),
         )
 
     async def _async_update_data(self):
@@ -54,6 +54,13 @@ class ZeroCoordinator(DataUpdateCoordinator):
 
             # TODO also get last transmit at this point
             _LOGGER.info("received units from API %s", units)
+
+            # for all units get last transmit data
+            for unit in units:
+                data = await self.client.async_get_last_transmit(unit["unitnumber"])
+                _LOGGER.info(
+                    "received data for unit %s from API %s", unit["unitnumber"], data
+                )
 
             # create quick access dict here
             return {unit["unitnumber"]: unit for unit in units}
