@@ -24,6 +24,7 @@ class ZeroCoordinator(DataUpdateCoordinator):
     """Class to manage fetching data from the API."""
 
     config_entry: ConfigEntry
+    units = {}  # all units fetched
 
     def __init__(
         self,
@@ -46,13 +47,13 @@ class ZeroCoordinator(DataUpdateCoordinator):
             # return await self.client.async_get_last_transmit()
 
             # start by getting all units with given login
-            units = await self.client.async_get_units()
+            self.units = await self.client.async_get_units()
 
             # also get last transmit at this point
-            LOGGER.debug("received units from API %s", units)
+            LOGGER.debug("received units from API %s", self.units)
 
             # for all units get last transmit data
-            for unit in units:
+            for unit in self.units:
                 data = await self.client.async_get_last_transmit(unit["unitnumber"])
                 LOGGER.debug(
                     "received data for unit %s from API %s", unit["unitnumber"], data
@@ -61,7 +62,7 @@ class ZeroCoordinator(DataUpdateCoordinator):
                 # TODO how to set data to sensors
 
             # create quick access dict here
-            return {unit["unitnumber"]: unit for unit in units}
+            return {unit["unitnumber"]: unit for unit in self.units}
 
         except ZeroApiClientAuthenticationError as exception:
             raise ConfigEntryAuthFailed(exception) from exception

@@ -17,12 +17,18 @@ class ZeroEntity(CoordinatorEntity):
         """Initialize."""
         super().__init__(coordinator)
 
-        LOGGER.debug("device created by coordinator")
-
-        self._attr_unique_id = coordinator.config_entry.entry_id
-        self._attr_device_info = DeviceInfo(
-            identifiers={(DOMAIN, self.unique_id)},
-            name=NAME,
-            model=VERSION,
-            manufacturer=NAME,
+        LOGGER.debug(
+            "device created by coordinator, found units %s ", coordinator.units
         )
+
+        if not coordinator.units:
+            LOGGER.debug("no units were fetched, no devices to create here")
+        else:
+            # TODO how to create multiple units here instead of a single?
+            self._attr_unique_id = coordinator.config_entry.entry_id
+            self._attr_device_info = DeviceInfo(
+                identifiers={(DOMAIN, self.unique_id)},
+                name="Zero Unit [" + coordinator.units[0]["unitnumber"] + "]",
+                model=VERSION,
+                manufacturer=NAME,
+            )
