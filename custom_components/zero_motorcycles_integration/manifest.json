@@ -2,11 +2,11 @@
   "domain": "zero_motorcycles_integration",
   "name": "Zero Motorcycles Integration",
   "codeowners": [
-    "@ludeeus"
+    "@hanscappelle"
   ],
   "config_flow": true,
   "documentation": "https://github.com/hanscappelle/zero-motorcycles-integration",
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/hanscappelle/zero-motorcycles-integration/issues",
-  "version": "0.0.0"
+  "version": "0.1.0"
 }
