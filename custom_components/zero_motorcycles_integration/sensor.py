@@ -9,9 +9,99 @@ from .entity import ZeroEntity
 
 ENTITY_DESCRIPTIONS = (
     SensorEntityDescription(
-        key="zero_motorcycles_integration",
-        name="SOC",
+        key="zero_motorcycles",
+        name="soc",
         icon="mdi:battery-charging-50",
+    ),
+    SensorEntityDescription(
+        key="zero_motorcycles",
+        name="name",
+        icon="mdi:id-card",
+    ),
+    SensorEntityDescription(
+        key="zero_motorcycles",
+        name="mileage",
+        icon="mdi:gauge",
+    ),
+    SensorEntityDescription(
+        key="zero_motorcycles",
+        name="software_version",
+        icon="mdi:bug",
+    ),
+    SensorEntityDescription(
+        key="zero_motorcycles",
+        name="longitude",
+        icon="mdi:map-marker",
+    ),
+    SensorEntityDescription(
+        key="zero_motorcycles",
+        name="latitude",
+        icon="mdi:map-marker",
+    ),
+    SensorEntityDescription(
+        key="zero_motorcycles",
+        name="altitude",
+        icon="mdi:crosshair-gps",
+    ),
+    SensorEntityDescription(
+        key="zero_motorcycles",
+        name="gps_valid",
+        icon="mdi:crosshair-gps",
+    ),
+    SensorEntityDescription(
+        key="zero_motorcycles",
+        name="gps_connected",
+        icon="mdi:gps",
+    ),
+    SensorEntityDescription(
+        key="zero_motorcycles",
+        name="satellites",
+        icon="mdi:satellite-variant",
+    ),
+    SensorEntityDescription(
+        key="zero_motorcycles",
+        name="velocity",
+        icon="mdi:gauge",
+    ),
+    SensorEntityDescription(
+        key="zero_motorcycles",
+        name="heading",
+        icon="mdi:compass",
+    ),
+    SensorEntityDescription(
+        key="zero_motorcycles",
+        name="main_voltage",
+        icon="mdi:car-battery",
+    ),
+    SensorEntityDescription(
+        key="zero_motorcycles",
+        name="tipover",
+        icon="mdi:chat-alert",
+    ),
+    SensorEntityDescription(
+        key="zero_motorcycles",
+        name="charging",
+        icon="mdi:ev-station",
+    ),
+    SensorEntityDescription(
+        key="zero_motorcycles",
+        name="chargecomplete",
+        icon="mdi:battery-charging-100",
+    ),
+    SensorEntityDescription(
+        key="zero_motorcycles",
+        name="pluggedin",
+        icon="mdi:power-plug",
+    ),
+    SensorEntityDescription(
+        key="zero_motorcycles",
+        name="chargingtimeleft",
+        icon="mdi:battery-clock",
+    ),
+    SensorEntityDescription(
+        key="zero_motorcycles",
+        name="storage",
+        icon="mdi:sleep",
     ),
 )
 
@@ -26,7 +116,6 @@ async def async_setup_entry(hass, entry, async_add_devices):
         )
         for entity_description in ENTITY_DESCRIPTIONS
     )
-    # TODO create more sensors here
 
 
 class ZeroSensor(ZeroEntity, SensorEntity):
@@ -39,17 +128,18 @@ class ZeroSensor(ZeroEntity, SensorEntity):
     ) -> None:
         """Initialize the sensor class."""
         super().__init__(coordinator)
+        # unitnumber = self.coordinator.units[0]["unitnumber"]
+        # self.entity_id = unitnumber + "-" + entity_description.name
+        # LOGGER.debug("create sensor with description %s", entity_description)
         self.entity_description = entity_description
 
     @property
     def native_value(self) -> str:
         """Return the native value of the sensor."""
+        sensor = self.entity_description.name
         unitnumber = self.coordinator.units[0]["unitnumber"]
-        soc = self.coordinator.data[unitnumber][0]["soc"]
+        value = self.coordinator.data[unitnumber][0][sensor]
         LOGGER.debug(
-            "SOC sensor value for unit %s is %s from %s ",
-            unitnumber,
-            soc,
-            self.coordinator.data,
+            "Sensor value for unit %s for sensor %s is %s", unitnumber, sensor, value
         )
-        return soc
+        return value
