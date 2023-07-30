@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from homeassistant.components.sensor import SensorEntity, SensorEntityDescription
 
-from .const import DOMAIN
+from .const import DOMAIN, LOGGER
 from .coordinator import ZeroCoordinator
 from .entity import ZeroEntity
 
@@ -26,6 +26,7 @@ async def async_setup_entry(hass, entry, async_add_devices):
         )
         for entity_description in ENTITY_DESCRIPTIONS
     )
+    # TODO create more sensors here
 
 
 class ZeroSensor(ZeroEntity, SensorEntity):
@@ -43,4 +44,12 @@ class ZeroSensor(ZeroEntity, SensorEntity):
     @property
     def native_value(self) -> str:
         """Return the native value of the sensor."""
-        return self.coordinator.data.get("body")
+        unitnumber = self.coordinator.units[0]["unitnumber"]
+        soc = self.coordinator.data[unitnumber][0]["soc"]
+        LOGGER.debug(
+            "SOC sensor value for unit %s is %s from %s ",
+            unitnumber,
+            soc,
+            self.coordinator.data,
+        )
+        return soc

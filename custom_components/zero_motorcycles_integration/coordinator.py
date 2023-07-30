@@ -53,16 +53,19 @@ class ZeroCoordinator(DataUpdateCoordinator):
             LOGGER.debug("received units from API %s", self.units)
 
             # for all units get last transmit data
+            data = {}
             for unit in self.units:
-                data = await self.client.async_get_last_transmit(unit["unitnumber"])
+                unitnumber = unit["unitnumber"]
+                data[unitnumber] = await self.client.async_get_last_transmit(unitnumber)
                 LOGGER.debug(
-                    "received data for unit %s from API %s", unit["unitnumber"], data
+                    "received data for unit %s from API %s",
+                    unitnumber,
+                    data[unitnumber],
                 )
                 # TODO figure out how to create devices named per unit (if not already existing)
-                # TODO how to set data to sensors
 
             # create quick access dict here
-            return {unit["unitnumber"]: unit for unit in self.units}
+            return data
 
         except ZeroApiClientAuthenticationError as exception:
             raise ConfigEntryAuthFailed(exception) from exception

@@ -17,10 +17,6 @@ class ZeroEntity(CoordinatorEntity):
         """Initialize."""
         super().__init__(coordinator)
 
-        LOGGER.debug(
-            "device created by coordinator, found units %s ", coordinator.units
-        )
-
         if not coordinator.units:
             LOGGER.debug("no units were fetched, no devices to create here")
         else:

@@ -20,6 +20,16 @@ HAVE FUN! 😎
 
 Because we can!
 
+## Limitations
+
+This is literally my first Home Assistant integration so there is still a lot to
+do and as of now there are still some limitations. Here is an attempt to describe those:
+
+* Only 1 device is created from the first unitnumber linked to your account. So if you
+have multiple bikes this could be an issue.
+* Coordindator is hardcoded to update every 5 minutes, if you need more you'll have to
+change that manually for now.
+
 ## About
 
 Here is a picture of my 14.4 kWh Zero SRF premium with charge tank for 12 kW
