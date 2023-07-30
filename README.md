@@ -37,13 +37,21 @@ Because we can!
 This is literally my first Home Assistant integration so there is still a lot to
 do and as of now there are still some limitations. Here is an attempt to describe those:
 
-* Only 1 device is created from the first unitnumber linked to your account. So if you
-have multiple bikes this could be an issue.
 * Coordindator is hardcoded to update every 5 minutes, if you need more you'll have to
 change that manually for now.
 * all sensors are non binary ones, some are likely just binary values but I haven't
 provided those so far
 * same for sensor classes, non are provided at this time
+
+## Version History
+
+# 0.2.0
+
+renamed sensors to be unique per unit number and fetch values for all unit numbers
+
+# 0.1.0
+
+initial version
 
 ## About
 

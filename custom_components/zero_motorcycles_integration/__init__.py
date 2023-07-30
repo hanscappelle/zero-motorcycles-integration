@@ -47,9 +47,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         ),
     )
 
-    # Initiate the coordinator. This method will also make sure to login to the API,
-    # instantiates the manager, starts it and issues a first discovery.
-    # TODO check if we can use this to make devices for every unitNumber in initial response
+    # Initiate the coordinator. This method will also make sure to login to the API
 
     # https://developers.home-assistant.io/docs/integration_fetching_data#coordinated-single-api-poll-for-data-for-all-entities
     await coordinator.async_config_entry_first_refresh()

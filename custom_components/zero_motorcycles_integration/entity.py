@@ -20,11 +20,12 @@ class ZeroEntity(CoordinatorEntity):
         if not coordinator.units:
             LOGGER.debug("no units were fetched, no devices to create here")
         else:
-            # TODO how to create multiple units here instead of a single?
+            # 1 entity created with sensors repeated for all units
             self._attr_unique_id = coordinator.config_entry.entry_id
             self._attr_device_info = DeviceInfo(
                 identifiers={(DOMAIN, self.unique_id)},
-                name="Zero Unit [" + coordinator.units[0]["unitnumber"] + "]",
+                # name="Zero Unit [" + coordinator.units[0]["unitnumber"] + "]",
+                name="Zero Motorcycles",  # generic name, not one per unit
                 model=VERSION,
                 manufacturer=NAME,
             )
