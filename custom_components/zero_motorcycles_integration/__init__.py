@@ -6,15 +6,13 @@ https://github.com/hanscappelle/zero-motorcycles-integration
 
 from __future__ import annotations
 
-import logging
-
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_PASSWORD, CONF_USERNAME, Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .api import ZeroApiClient
-from .const import DOMAIN
+from .const import DOMAIN, LOGGER
 from .coordinator import ZeroCoordinator
 
 PLATFORMS: list[Platform] = [
@@ -22,8 +20,6 @@ PLATFORMS: list[Platform] = [
     Platform.BINARY_SENSOR,
     # we don't have switches, only sensors of which some are binary
 ]
-
-_LOGGER = logging.getLogger(__name__)
 
 
 # https://developers.home-assistant.io/docs/config_entries_index/#setting-up-an-entry
@@ -36,9 +32,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     # Retrieve the stored credentials from config-flow
     username = entry.data.get(CONF_USERNAME)
-    _LOGGER.info("Loaded %s: %s", CONF_USERNAME, username)
+    LOGGER.debug("Loaded %s: %s", CONF_USERNAME, username)
     password = entry.data.get(CONF_PASSWORD)
-    _LOGGER.info("Loadded %s: ********", CONF_PASSWORD)
+    LOGGER.debug("Loadded %s: ********", CONF_PASSWORD)
 
     # Initialize the HASS structure
     hass.data.setdefault(DOMAIN, {})

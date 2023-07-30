@@ -1,8 +1,6 @@
 """DataUpdateCoordinator for zero_motorcycles_integration."""
 from __future__ import annotations
 
-import logging
-
 from datetime import timedelta
 
 from homeassistant.config_entries import ConfigEntry
@@ -19,8 +17,6 @@ from .api import (
     ZeroApiClientError,
 )
 from .const import DOMAIN, LOGGER
-
-_LOGGER = logging.getLogger(__name__)
 
 
 # https://developers.home-assistant.io/docs/integration_fetching_data#coordinated-single-api-poll-for-data-for-all-entities
@@ -52,15 +48,17 @@ class ZeroCoordinator(DataUpdateCoordinator):
             # start by getting all units with given login
             units = await self.client.async_get_units()
 
-            # TODO also get last transmit at this point
-            _LOGGER.info("received units from API %s", units)
+            # also get last transmit at this point
+            LOGGER.debug("received units from API %s", units)
 
             # for all units get last transmit data
             for unit in units:
                 data = await self.client.async_get_last_transmit(unit["unitnumber"])
-                _LOGGER.info(
+                LOGGER.debug(
                     "received data for unit %s from API %s", unit["unitnumber"], data
                 )
+                # TODO figure out how to create devices named per unit (if not already existing)
+                # TODO how to set data to sensors
 
             # create quick access dict here
             return {unit["unitnumber"]: unit for unit in units}
