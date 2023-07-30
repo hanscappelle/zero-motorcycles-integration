@@ -41,17 +41,17 @@ ENTITY_DESCRIPTIONS = (
     SensorEntityDescription(
         key="zero_motorcycles",
         name="altitude",
-        icon="mdi:crosshair-gps",
+        icon="mdi:image-filter-hdr",
     ),
     SensorEntityDescription(
         key="zero_motorcycles",
         name="gps_valid",
-        icon="mdi:crosshair-gps",
+        icon="mdi:crosshairs-gps",
     ),
     SensorEntityDescription(
         key="zero_motorcycles",
         name="gps_connected",
-        icon="mdi:gps",
+        icon="mdi:crosshairs-gps",
     ),
     SensorEntityDescription(
         key="zero_motorcycles",
@@ -128,9 +128,8 @@ class ZeroSensor(ZeroEntity, SensorEntity):
     ) -> None:
         """Initialize the sensor class."""
         super().__init__(coordinator)
-        # unitnumber = self.coordinator.units[0]["unitnumber"]
-        # self.entity_id = unitnumber + "-" + entity_description.name
-        # LOGGER.debug("create sensor with description %s", entity_description)
+        # had to create unique IDs per sensor here, using key.name
+        self._attr_unique_id = entity_description.key + "." + entity_description.name
         self.entity_description = entity_description
 
     @property
