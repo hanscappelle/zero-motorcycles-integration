@@ -3,7 +3,10 @@
 For more details about this integration, please refer to
 https://github.com/hanscappelle/zero-motorcycles-integration
 """
+
 from __future__ import annotations
+
+import logging
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_PASSWORD, CONF_USERNAME, Platform
@@ -12,7 +15,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .api import ZeroApiClient
 from .const import DOMAIN
-from .coordinator import ZeroDataUpdateCoordinator
+from .coordinator import ZeroCoordinator
 
 PLATFORMS: list[Platform] = [
     Platform.SENSOR,
@@ -20,19 +23,38 @@ PLATFORMS: list[Platform] = [
     # we don't have switches, only sensors of which some are binary
 ]
 
+_LOGGER = logging.getLogger(__name__)
+
 
 # https://developers.home-assistant.io/docs/config_entries_index/#setting-up-an-entry
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Set up this integration using UI."""
+    """
+    This class is called by the HomeAssistant framework when a configuration entry is provided.
+    For us, the configuration entry is the username-password credentials that the user
+    needs to access Starcom API.
+    """
+
+    # Retrieve the stored credentials from config-flow
+    username = entry.data.get(CONF_USERNAME)
+    _LOGGER.info("Loaded %s: %s", CONF_USERNAME, username)
+    password = entry.data.get(CONF_PASSWORD)
+    _LOGGER.info("Loadded %s: ********", CONF_PASSWORD)
+
+    # Initialize the HASS structure
     hass.data.setdefault(DOMAIN, {})
-    hass.data[DOMAIN][entry.entry_id] = coordinator = ZeroDataUpdateCoordinator(
+    hass.data[DOMAIN][entry.entry_id] = coordinator = ZeroCoordinator(
         hass=hass,
         client=ZeroApiClient(
-            username=entry.data[CONF_USERNAME],
-            password=entry.data[CONF_PASSWORD],
+            username=username,
+            password=password,
             session=async_get_clientsession(hass),
         ),
     )
+
+    # Initiate the coordinator. This method will also make sure to login to the API,
+    # instantiates the manager, starts it and issues a first discovery.
+    # TODO check if we can use this to make devices for every unitNumber in initial response
+
     # https://developers.home-assistant.io/docs/integration_fetching_data#coordinated-single-api-poll-for-data-for-all-entities
     await coordinator.async_config_entry_first_refresh()
 

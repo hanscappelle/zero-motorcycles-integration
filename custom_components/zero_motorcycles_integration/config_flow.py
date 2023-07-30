@@ -33,9 +33,6 @@ class ZeroIntegrationConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     username=user_input[CONF_USERNAME],
                     password=user_input[CONF_PASSWORD],
                 )
-                # TODO we could store all retrieved data here since this will likely
-                # not change over time for a user unless he gets a new bikd
-                # ...
             except ZeroApiClientAuthenticationError as exception:
                 LOGGER.warning(exception)
                 _errors["base"] = "auth"

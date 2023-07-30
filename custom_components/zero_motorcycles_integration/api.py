@@ -50,7 +50,8 @@ class ZeroApiClient:
             url="https://mongol.brono.com/mongol/api.php?commandname=get_last_transmit&format=json&user="
             + self._username
             + "&pass="
-            + self._password,
+            + self._password
+            + "&unitnumber=",
         )
 
     async def _api_wrapper(
