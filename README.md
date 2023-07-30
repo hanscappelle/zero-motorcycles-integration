@@ -10,7 +10,8 @@ All you need for this integration to work is your login. That is the username
 and password you use for your app.
 
 I'll try to have this published to HACS, if not you'll have to install it manually
-by dropping the custom_components folder contents into your HA installation.
+by dropping the custom_components folder contents into your HA installation. Or by 
+adding this repo as an integration repo using HACS. 
 
 Then you can add a new integration, search for "Zero" to find this one:
 
