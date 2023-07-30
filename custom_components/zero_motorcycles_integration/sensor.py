@@ -129,7 +129,10 @@ class ZeroSensor(ZeroEntity, SensorEntity):
         """Initialize the sensor class."""
         super().__init__(coordinator)
         # had to create unique IDs per sensor here, using key.name
-        self._attr_unique_id = entity_description.key + "." + entity_description.name
+        unitnumber = self.coordinator.units[0]["unitnumber"]
+        self._attr_unique_id = (
+            entity_description.key + "." + unitnumber + "." + entity_description.name
+        )
         self.entity_description = entity_description
 
     @property
@@ -139,6 +142,8 @@ class ZeroSensor(ZeroEntity, SensorEntity):
         unitnumber = self.coordinator.units[0]["unitnumber"]
         value = self.coordinator.data[unitnumber][0][sensor]
         LOGGER.debug(
-            "Sensor value for unit %s for sensor %s is %s", unitnumber, sensor, value
+            "Sensor value for %s is %s",
+            self.unique_id,
+            value,
         )
         return value
