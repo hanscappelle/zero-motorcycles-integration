@@ -1,7 +1,11 @@
 """Sensor platform for zero_motorcycles_integration."""
 from __future__ import annotations
 
-from homeassistant.components.sensor import SensorEntity, SensorEntityDescription
+from homeassistant.components.sensor import (
+    SensorEntity,
+    SensorEntityDescription,
+    SensorDeviceClass,
+)
 
 from .const import DOMAIN, LOGGER
 from .coordinator import ZeroCoordinator
@@ -12,6 +16,7 @@ ENTITY_DESCRIPTIONS = (
         key="zero_motorcycles",
         name="soc",
         icon="mdi:battery-charging-50",
+        device_class=SensorDeviceClass.BATTERY,
     ),
     SensorEntityDescription(
         key="zero_motorcycles",
@@ -22,6 +27,7 @@ ENTITY_DESCRIPTIONS = (
         key="zero_motorcycles",
         name="mileage",
         icon="mdi:gauge",
+        device_class=SensorDeviceClass.DISTANCE,
     ),
     SensorEntityDescription(
         key="zero_motorcycles",
@@ -52,6 +58,7 @@ ENTITY_DESCRIPTIONS = (
         key="zero_motorcycles",
         name="velocity",
         icon="mdi:gauge",
+        device_class=SensorDeviceClass.SPEED,
     ),
     SensorEntityDescription(
         key="zero_motorcycles",
@@ -62,11 +69,13 @@ ENTITY_DESCRIPTIONS = (
         key="zero_motorcycles",
         name="main_voltage",
         icon="mdi:car-battery",
+        device_class=SensorDeviceClass.VOLTAGE,
     ),
     SensorEntityDescription(
         key="zero_motorcycles",
         name="chargingtimeleft",
         icon="mdi:battery-clock",
+        device_class=SensorDeviceClass.DURATION,
     ),
 )
 
