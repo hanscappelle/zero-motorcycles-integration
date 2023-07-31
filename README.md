@@ -47,12 +47,13 @@ do and as of now there are still some limitations. Here is an attempt to describ
 * Coordindator is hardcoded to update every 5 minutes, if you need more you'll have to
 change that manually for now. For this search for the `(minutes=5)`line in the `coordinator.py`
 file and change it to what you prefer. 
-* all sensors are non binary ones, some are likely just binary values but I haven't
-provided those so far. You could technically make some sensor templates to fix this or
-just change it in code and make a pull request. 
-* same for sensor classes, non are provided at this time. See previous for fix. 
 
 ## Version History
+
+# 0.3.0
+
+* added binary sensors
+* added device class to most sensors
 
 # 0.2.0
 
