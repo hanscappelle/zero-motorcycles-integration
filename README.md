@@ -9,10 +9,13 @@ cellular connection and cloud service.
 All you need for this integration to work is your login. That is the username
 and password you use for the official Zero Motorcycles app.
 
-I'll try to have this published to HACS, if not you'll have to install it manually
-by dropping the custom_components folder contents into your HA installation. Or by 
-adding this repo as an integration repo using HACS. For that, within HACS just select
-"add repo" then pick "integration" as type and enter a name and the url of this repo. 
+Currently working on getting this project published to HACS
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=for-the-badge)](https://github.com/hacs/integration)
+
+For now you either have to install it manually by dropping the custom_components 
+folder contents into your HA installation. Or by adding this repo as an integration 
+repo using HACS. For that, within HACS just select "add repo" then pick "integration" 
+as type and enter a name and the url of this repo. 
 
 Then you can add a new integration, search for "Zero" to find this one:
 
