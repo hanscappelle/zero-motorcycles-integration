@@ -57,11 +57,12 @@ file and change it to what you prefer.
 
 # 0.2.0
 
-renamed sensors to be unique per unit number and fetch values for all unit numbers
+* renamed sensors to be unique per unit number 
+* fetch values for all unit numbers
 
 # 0.1.0
 
-initial version
+initial release
 
 ## About
 
