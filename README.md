@@ -13,9 +13,9 @@ Currently working on getting this project published to HACS
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=for-the-badge)](https://github.com/hacs/integration)
 
 For now you either have to install it manually by dropping the custom_components 
-folder contents into your HA installation. Or by adding this repo as an integration 
-repo using HACS. For that, within HACS just select "add repo" then pick "integration" 
-as type and enter a name and the url of this repo. 
+folder contents into your HA installation. Or by adding this repo as a custom 
+repo within HACS. For that, within HACS just select "add repo" then pick "integration" 
+as type and enter a name and the url of this repo. Or read here https://hacs.xyz/docs/faq/custom_repositories/
 
 Then you can add a new integration, search for "Zero" to find this one:
 
