@@ -16,21 +16,25 @@ ENTITY_DESCRIPTIONS = (
         key="zero_motorcycles",
         name="tipover",
         icon="mdi:chat-alert",
+        device_class=BinarySensorDeviceClass.PROBLEM,
     ),
     BinarySensorEntityDescription(
         key="zero_motorcycles",
         name="gps_valid",
         icon="mdi:crosshairs-gps",
+        device_class=BinarySensorDeviceClass.PROBLEM,
     ),
     BinarySensorEntityDescription(
         key="zero_motorcycles",
         name="gps_connected",
         icon="mdi:crosshairs-gps",
+        device_class=BinarySensorDeviceClass.CONNECTIVITY,
     ),
     BinarySensorEntityDescription(
         key="zero_motorcycles",
         name="charging",
         icon="mdi:ev-station",
+        device_class=BinarySensorDeviceClass.BATTERY_CHARGING,
     ),
     BinarySensorEntityDescription(
         key="zero_motorcycles",
@@ -41,6 +45,7 @@ ENTITY_DESCRIPTIONS = (
         key="zero_motorcycles",
         name="pluggedin",
         icon="mdi:power-plug",
+        device_class=BinarySensorDeviceClass.PLUG,
     ),
     BinarySensorEntityDescription(
         key="zero_motorcycles",
