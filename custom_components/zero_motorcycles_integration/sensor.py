@@ -45,16 +45,6 @@ ENTITY_DESCRIPTIONS = (
     ),
     SensorEntityDescription(
         key="zero_motorcycles",
-        name="gps_valid",
-        icon="mdi:crosshairs-gps",
-    ),
-    SensorEntityDescription(
-        key="zero_motorcycles",
-        name="gps_connected",
-        icon="mdi:crosshairs-gps",
-    ),
-    SensorEntityDescription(
-        key="zero_motorcycles",
         name="satellites",
         icon="mdi:satellite-variant",
     ),
@@ -75,33 +65,8 @@ ENTITY_DESCRIPTIONS = (
     ),
     SensorEntityDescription(
         key="zero_motorcycles",
-        name="tipover",
-        icon="mdi:chat-alert",
-    ),
-    SensorEntityDescription(
-        key="zero_motorcycles",
-        name="charging",
-        icon="mdi:ev-station",
-    ),
-    SensorEntityDescription(
-        key="zero_motorcycles",
-        name="chargecomplete",
-        icon="mdi:battery-charging-100",
-    ),
-    SensorEntityDescription(
-        key="zero_motorcycles",
-        name="pluggedin",
-        icon="mdi:power-plug",
-    ),
-    SensorEntityDescription(
-        key="zero_motorcycles",
         name="chargingtimeleft",
         icon="mdi:battery-clock",
-    ),
-    SensorEntityDescription(
-        key="zero_motorcycles",
-        name="storage",
-        icon="mdi:sleep",
     ),
 )
 

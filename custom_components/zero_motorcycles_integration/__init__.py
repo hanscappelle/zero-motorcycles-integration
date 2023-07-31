@@ -17,7 +17,7 @@ from .coordinator import ZeroCoordinator
 
 PLATFORMS: list[Platform] = [
     Platform.SENSOR,
-    # Platform.BINARY_SENSOR, for now have all non binary sensors
+    Platform.BINARY_SENSOR,
     # we don't have switches, only sensors of which some are binary
 ]
 
