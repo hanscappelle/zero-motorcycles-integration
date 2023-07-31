@@ -7,10 +7,15 @@ cellular connection and cloud service.
 ## How
 
 All you need for this integration to work is your login. That is the username
-and password you use for your app.
+and password you use for the official Zero Motorcycles app.
 
-I'll try to have this published to HACS, if not you'll have to install it manually
-by dropping the custom_components folder contents into your HA installation.
+Currently working on getting this project published to HACS
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=for-the-badge)](https://github.com/hacs/integration)
+
+For now you either have to install it manually by dropping the custom_components 
+folder contents into your HA installation. Or by adding this repo as an integration 
+repo using HACS. For that, within HACS just select "add repo" then pick "integration" 
+as type and enter a name and the url of this repo. 
 
 Then you can add a new integration, search for "Zero" to find this one:
 
@@ -24,7 +29,9 @@ Once done this integration should be visible:
 
 ![shows integration](screenshots/Screenshot%202023-07-30%20at%2013.23.09.png)
 
-An example of all the data it fetches:
+An example of all the data it fetches. Note that in later releases sensor names
+have been adapted to include unit numbers so that these can be created for all
+units in case someone owns more than 1 zero motorcycle.
 
 ![fetched data example](screenshots/Screenshot%202023-07-30%20at%2013.19.36.png)
 
@@ -38,10 +45,12 @@ This is literally my first Home Assistant integration so there is still a lot to
 do and as of now there are still some limitations. Here is an attempt to describe those:
 
 * Coordindator is hardcoded to update every 5 minutes, if you need more you'll have to
-change that manually for now.
+change that manually for now. For this search for the `(minutes=5)`line in the `coordinator.py`
+file and change it to what you prefer. 
 * all sensors are non binary ones, some are likely just binary values but I haven't
-provided those so far
-* same for sensor classes, non are provided at this time
+provided those so far. You could technically make some sensor templates to fix this or
+just change it in code and make a pull request. 
+* same for sensor classes, non are provided at this time. See previous for fix. 
 
 ## Version History
 
