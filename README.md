@@ -75,3 +75,8 @@ maximum charging power (if conditions are met).
 
 I have since sold this motorcycle (went to France!) and now mostly ride a 2021
 Energice SS9+ with 21.5 kWh battery and 24 kW charge speed.
+
+## Resources
+
+A good code example for sensors and device_trackers is the Porsche Connect integration 
+with sources available at https://github.com/CJNE/ha-porscheconnect 
