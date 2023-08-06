@@ -3,7 +3,5 @@ from logging import Logger, getLogger
 
 LOGGER: Logger = getLogger(__package__)
 
-NAME = "Zero Motorcycles Integration"
+# we keep these constants, these shouldn't change anyway
 DOMAIN = "zero_motorcycles_integration"
-VERSION = "0.3.0"
-ATTRIBUTION = "Data provided by https://mongol.brono.com/mongol/api.php"
