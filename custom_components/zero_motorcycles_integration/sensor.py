@@ -11,7 +11,7 @@ from .const import DOMAIN, LOGGER
 from .coordinator import ZeroCoordinator
 from .entity import ZeroEntity
 
-ENTITY_DESCRIPTIONS = (
+SENSORS = (
     SensorEntityDescription(
         key="zero_motorcycles",
         name="soc",
@@ -85,50 +85,60 @@ async def async_setup_entry(hass, entry, async_add_devices):
     coordinator = hass.data[DOMAIN][entry.entry_id]
 
     # create sensors for all units found, not just the first one
+    # work with an array of devices
+    devices = []
+
     for unit in coordinator.units:
-        async_add_devices(
-            ZeroSensor(
-                coordinator=coordinator,
-                entity_description=entity_description,
-                unitnumber=unit["unitnumber"],
+        for sensor in SENSORS:
+            devices.append(
+                ZeroSensor(
+                    coordinator=coordinator,
+                    entity_description=sensor,
+                    unitnumber=unit["unitnumber"],
+                    sensor_name=sensor.name,
+                )
             )
-            for entity_description in ENTITY_DESCRIPTIONS
-        )
+
+    async_add_devices(devices, True)
 
 
 class ZeroSensor(ZeroEntity, SensorEntity):
     """zero_motorcycles_integration Sensor class."""
-
-    unitnumber: str  # each motorcycle gets this unique unit number assigned
 
     def __init__(
         self,
         coordinator: ZeroCoordinator,
         entity_description: SensorEntityDescription,
         unitnumber: str,
+        sensor_name: str,
     ) -> None:
         """Initialize the sensor class."""
         super().__init__(coordinator)
+
+        # set unit number for unit reference here, this is used as a key in received data
         self.unitnumber = unitnumber
+        self.sensor_name = sensor_name  # used for data point refererence
+
         # had to create unique IDs per sensor here, using key.name
-        # unitnumber = self.coordinator.units[0]["unitnumber"] # this was limited to the first unit
         self._attr_unique_id = (
             entity_description.key + "." + unitnumber + "." + entity_description.name
         )
+        self._name = unitnumber + " " + entity_description.name
         # make names unique per unit
-        entity_description.name = (
-            entity_description.name.split(".")[0] + "." + unitnumber
-        )
+        # entity_description.name = sensor_name + "." + unitnumber
         # entity_description.key = "unit." + unitnumber + "." + entity_description.name
         self.entity_description = entity_description
 
     @property
+    def name(self):
+        """Return the name of the device."""
+        return self._name
+
+    @property
     def native_value(self) -> str:
         """Return the native value of the sensor."""
-        sensor = self.entity_description.name
-        # unitnumber = self.coordinator.units[0]["unitnumber"] # this was limited to the first unit
         # value = self.coordinator.data[self.unitnumber][0][sensor]
-        value = self.coordinator.data[self.unitnumber][0][sensor.split(".")[0]]
+        value = self.coordinator.data[self.unitnumber][0][self.sensor_name]
         LOGGER.debug(
             "Sensor value for %s is %s",
             self.unique_id,

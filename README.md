@@ -12,9 +12,9 @@ and password you use for the official Zero Motorcycles app.
 Currently working on getting this project published to HACS
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=for-the-badge)](https://github.com/hacs/integration)
 
-For now you either have to install it manually by dropping the custom_components 
-folder contents into your HA installation. Or by adding this repo as a custom 
-repo within HACS. For that, within HACS just select "add repo" then pick "integration" 
+For now you either have to install it manually by dropping the custom_components
+folder contents into your HA installation. Or by adding this repo as a custom
+repo within HACS. For that, within HACS just select "add repo" then pick "integration"
 as type and enter a name and the url of this repo. Or read here https://hacs.xyz/docs/faq/custom_repositories/
 
 Then you can add a new integration, search for "Zero" to find this one:
@@ -46,9 +46,22 @@ do and as of now there are still some limitations. Here is an attempt to describ
 
 * Coordindator is hardcoded to update every 5 minutes, if you need more you'll have to
 change that manually for now. For this search for the `(minutes=5)`line in the `coordinator.py`
-file and change it to what you prefer. 
+file and change it to what you prefer.
+
+## Upcoming features
+
+* parse numeric values (if needed that is)
+* allow user to configure update interval from UI
 
 ## Version History
+
+# 0.4.0
+
+* created device_tracker for location
+* simplified sensor names + fix for multiple units
+* get version from manifest instead of constants
+* ignored yaml setup since not supported
+
 
 # 0.3.0
 
@@ -57,7 +70,7 @@ file and change it to what you prefer.
 
 # 0.2.0
 
-* renamed sensors to be unique per unit number 
+* renamed sensors to be unique per unit number
 * fetch values for all unit numbers
 
 # 0.1.0

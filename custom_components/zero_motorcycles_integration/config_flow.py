@@ -19,7 +19,7 @@ from .const import DOMAIN, LOGGER
 class ZeroIntegrationConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Configuration flow"""
 
-    VERSION = 1
+    VERSION = 1 # configuration flow version, if more info is needed change one up
 
     async def async_step_user(
         self,
@@ -77,4 +77,4 @@ class ZeroIntegrationConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             password=password,
             session=async_create_clientsession(self.hass),
         )
-        await client.async_get_units()  # this only requires username and password
+        await client.async_get_units()  # this only requires username and password and retrieves unit numbers

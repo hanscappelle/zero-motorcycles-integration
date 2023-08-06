@@ -21,7 +21,7 @@ from .const import DOMAIN, LOGGER
 
 # https://developers.home-assistant.io/docs/integration_fetching_data#coordinated-single-api-poll-for-data-for-all-entities
 class ZeroCoordinator(DataUpdateCoordinator):
-    """Class to manage fetching data from the API."""
+    """Class to manage fetching data from API."""
 
     config_entry: ConfigEntry
     units = {}  # all units fetched
@@ -33,6 +33,24 @@ class ZeroCoordinator(DataUpdateCoordinator):
     ) -> None:
         """Initialize."""
         self.client = client
+
+        # TODO maybe keep track of vehicles instead of mapping data
+        # self.vehicles = None
+        self.data = {}
+
+        # TODO get scan interval from config
+        # check options https://developers.home-assistant.io/docs/config_entries_options_flow_handler
+        # scan_interval = timedelta(
+        #    seconds=config_entry.options.get(
+        #        CONF_SCAN_INTERVAL,
+        #        config_entry.data.get(
+        #            CONF_SCAN_INTERVAL, SCAN_INTERVAL.total_seconds()
+        #        ),
+        #    )
+        # )
+        # apply configured refresh interval here
+        # super().__init__(hass, LOGGER, name=DOMAIN, update_interval=scan_interval)
+
         super().__init__(
             hass=hass,
             logger=LOGGER,
@@ -41,11 +59,8 @@ class ZeroCoordinator(DataUpdateCoordinator):
         )
 
     async def _async_update_data(self):
-        """Update data via library."""
+        """Update data using API."""
         try:
-            # attempt to retrieve unit number
-            # return await self.client.async_get_last_transmit()
-
             # start by getting all units with given login
             self.units = await self.client.async_get_units()
 
@@ -56,15 +71,14 @@ class ZeroCoordinator(DataUpdateCoordinator):
             data = {}
             for unit in self.units:
                 unitnumber = unit["unitnumber"]
+                # create quick access dict here
                 data[unitnumber] = await self.client.async_get_last_transmit(unitnumber)
-                LOGGER.debug(
-                    "received data for unit %s from API %s",
-                    unitnumber,
-                    data[unitnumber],
-                )
-                # TODO figure out how to create devices named per unit (if not already existing)
+                # LOGGER.debug(
+                #    "received data for unit %s from API %s",
+                #    unitnumber,
+                #    data[unitnumber],
+                # )
 
-            # create quick access dict here
             return data
 
         except ZeroApiClientAuthenticationError as exception:
