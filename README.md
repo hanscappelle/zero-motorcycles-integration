@@ -52,6 +52,7 @@ file and change it to what you prefer.
 
 # 0.4.0
 
+* simplified sensor names + fix for multiple units
 * get version from manifest
 * ignored yaml setup since not supported
 
