@@ -123,10 +123,16 @@ class ZeroSensor(ZeroEntity, SensorEntity):
         self._attr_unique_id = (
             entity_description.key + "." + unitnumber + "." + entity_description.name
         )
+        self._name = unitnumber + " " + entity_description.name
         # make names unique per unit
         # entity_description.name = sensor_name + "." + unitnumber
         # entity_description.key = "unit." + unitnumber + "." + entity_description.name
         self.entity_description = entity_description
+
+    @property
+    def name(self):
+        """Return the name of the device."""
+        return self._name
 
     @property
     def native_value(self) -> str:
