@@ -1,11 +1,6 @@
 # Zero Motorcycles Home Assistant Integration
 
-[![GitHub Release][releases-shield]][releases]
-[![GitHub Activity][commits-shield]][commits]
-[![License][license-shield]](LICENSE)
-
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=for-the-badge)](https://github.com/hacs/integration)
-[![Project Maintenance][maintenance-shield]][user_profile]
 
 This project is an attempt to create an integration to consume services provided by
 Zero Motorcycles for their 3rd gen electric motorcycles that come with integrated
