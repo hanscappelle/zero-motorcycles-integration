@@ -63,10 +63,16 @@ class ZeroTrackerEntity(ZeroEntity, TrackerEntity):
         heading = self.coordinator.data[self.unit_number][0]["heading"]
         velocity = self.coordinator.data[self.unit_number][0]["velocity"]
         altitude = self.coordinator.data[self.unit_number][0]["altitude"]
+        gps_connected = self.coordinator.data[self.unit_number][0]["gps_connected"]
+        gps_valid = self.coordinator.data[self.unit_number][0]["gps_valid"]
+        satellites = self.coordinator.data[self.unit_number][0]["satellites"]
         name = self.coordinator.data[self.unit_number][0]["name"]
         return {
             "heading": heading,
             "vin": name,
             "velocity": velocity,
             "altitude": altitude,
+            "gps_connected": gps_connected,
+            "gps_valid": gps_valid,
+            "satellites": satellites,
         }
