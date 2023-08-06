@@ -18,8 +18,7 @@ from .coordinator import ZeroCoordinator
 PLATFORMS: list[Platform] = [
     Platform.SENSOR,
     Platform.BINARY_SENSOR,
-    # we don't have switches, only sensors of which some are binary
-    # TODO create device tracker here
+    Platform.DEVICE_TRACKER,
 ]
 
 

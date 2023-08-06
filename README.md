@@ -48,12 +48,18 @@ do and as of now there are still some limitations. Here is an attempt to describ
 change that manually for now. For this search for the `(minutes=5)`line in the `coordinator.py`
 file and change it to what you prefer.
 
+## Upcoming features
+
+* parse numeric values (if needed that is)
+* allow user to configure update interval from UI
+
 ## Version History
 
 # 0.4.0
 
+* created device_tracker for location
 * simplified sensor names + fix for multiple units
-* get version from manifest
+* get version from manifest instead of constants
 * ignored yaml setup since not supported
 
 
