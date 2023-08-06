@@ -1,5 +1,12 @@
 # Zero Motorcycles Home Assistant Integration
 
+[![GitHub Release][releases-shield]][releases]
+[![GitHub Activity][commits-shield]][commits]
+[![License][license-shield]](LICENSE)
+
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=for-the-badge)](https://github.com/hacs/integration)
+[![Project Maintenance][maintenance-shield]][user_profile]
+
 This project is an attempt to create an integration to consume services provided by
 Zero Motorcycles for their 3rd gen electric motorcycles that come with integrated
 cellular connection and cloud service.
@@ -9,8 +16,7 @@ cellular connection and cloud service.
 All you need for this integration to work is your login. That is the username
 and password you use for the official Zero Motorcycles app.
 
-Currently working on getting this project published to HACS
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=for-the-badge)](https://github.com/hacs/integration)
+Currently not available in default HACS repo because that requires me to make a brand first. 
 
 For now you either have to install it manually by dropping the custom_components
 folder contents into your HA installation. Or by adding this repo as a custom
