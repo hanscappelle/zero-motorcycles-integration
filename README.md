@@ -1,5 +1,6 @@
 # Zero Motorcycles Home Assistant Integration
 
+[![GitHub Release][releases-shield]][releases]
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=for-the-badge)](https://github.com/hacs/integration)
 
 This project is an attempt to create an integration to consume services provided by
