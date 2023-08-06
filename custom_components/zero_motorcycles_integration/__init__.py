@@ -21,6 +21,9 @@ PLATFORMS: list[Platform] = [
     # we don't have switches, only sensors of which some are binary
 ]
 
+async def async_setup(hass: HomeAssistant, config: Config):
+    """Set up this integration using YAML is not supported."""
+    return True
 
 # https://developers.home-assistant.io/docs/config_entries_index/#setting-up-an-entry
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
@@ -52,7 +55,14 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     # https://developers.home-assistant.io/docs/integration_fetching_data#coordinated-single-api-poll-for-data-for-all-entities
     await coordinator.async_config_entry_first_refresh()
 
+    # configure all sensors
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
+    # alternative with more readable for loop
+    #for platform in PLATFORMS:
+    #    hass.async_add_job(
+    #        hass.config_entries.async_forward_entry_setup(entry, platform)
+    #    )
+    
     entry.async_on_unload(entry.add_update_listener(async_reload_entry))
 
     return True
