@@ -1,5 +1,4 @@
 """Support for tracking devices."""
-from typing import Optional
 
 from homeassistant.components.device_tracker import SOURCE_TYPE_GPS
 from homeassistant.components.device_tracker.config_entry import TrackerEntity
@@ -38,12 +37,12 @@ class ZeroTrackerEntity(ZeroEntity, TrackerEntity):
         LOGGER.debug("init tracker for %s", self.unit_number)
 
     @property
-    def latitude(self) -> Optional[float]:
+    def latitude(self) -> float | type(None):
         """Return latitude value of the device."""
         return self.coordinator.data[self.unit_number][0]["latitude"]
 
     @property
-    def longitude(self) -> Optional[float]:
+    def longitude(self) -> float | type(None):
         """Return longitude value of the device."""
         return self.coordinator.data[self.unit_number][0]["longitude"]
 

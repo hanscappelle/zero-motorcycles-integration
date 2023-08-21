@@ -1,4 +1,9 @@
-"""Mongol or starcom API"""
+"""Mongol or starcom API used by Zero Motorcycles for sharing data.
+
+For more details about this starcom API please refer to
+https://bitbucket.org/cappelleh/zengo-android/src/master/
+"""
+
 from __future__ import annotations
 
 import asyncio
@@ -21,7 +26,7 @@ class ZeroApiClientAuthenticationError(ZeroApiClientError):
 
 
 class ZeroApiClient:
-    """Starcom API"""
+    """Starcom API used by Zero Motorcycles for sharing data."""
 
     def __init__(
         self,
@@ -29,6 +34,7 @@ class ZeroApiClient:
         password: str,
         session: aiohttp.ClientSession,
     ) -> None:
+        """Set user credentials for API."""
         self._username = username
         self._password = password
         self._session = session
