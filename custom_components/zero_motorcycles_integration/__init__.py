@@ -24,7 +24,7 @@ PLATFORMS: list[Platform] = [
 
 # https://developers.home-assistant.io/docs/config_entries_index/#setting-up-an-entry
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Configuration entry for HomeAssistant framework.
+    """Provide configuration entry for HomeAssistant framework.
 
     For us, the configuration entry is the username-password credentials that
     the user needs to access Starcom API.

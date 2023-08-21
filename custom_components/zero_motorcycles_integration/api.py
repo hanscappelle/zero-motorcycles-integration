@@ -34,7 +34,7 @@ class ZeroApiClient:
         password: str,
         session: aiohttp.ClientSession,
     ) -> None:
-        """API init with user credentails."""
+        """Set user credentials for API."""
         self._username = username
         self._password = password
         self._session = session
