@@ -21,12 +21,6 @@ PLATFORMS: list[Platform] = [
     Platform.DEVICE_TRACKER,
 ]
 
-
-async def async_setup(hass: HomeAssistant, config: Config):
-    """Set up this integration using YAML is not supported."""
-    return True
-
-
 # https://developers.home-assistant.io/docs/config_entries_index/#setting-up-an-entry
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """
