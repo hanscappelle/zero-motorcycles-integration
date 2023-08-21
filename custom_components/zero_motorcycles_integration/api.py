@@ -1,6 +1,9 @@
 """Mongol or starcom API used by Zero Motorcycles for sharing data.
 
+For more details about this starcom API please refer to
+https://bitbucket.org/cappelleh/zengo-android/src/master/
 """
+
 from __future__ import annotations
 
 import asyncio
@@ -31,7 +34,7 @@ class ZeroApiClient:
         password: str,
         session: aiohttp.ClientSession,
     ) -> None:
-        """API initialisation with user credentials."""
+        """API init with user credentails."""
         self._username = username
         self._password = password
         self._session = session
