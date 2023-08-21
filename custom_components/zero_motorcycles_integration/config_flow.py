@@ -17,9 +17,9 @@ from .const import DOMAIN, LOGGER
 
 
 class ZeroIntegrationConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
-    """Configuration flow"""
+    """Configuration flow implementation."""
 
-    VERSION = 1 # configuration flow version, if more info is needed change one up
+    VERSION = 1  # configuration flow version, if more info is needed change one up
 
     async def async_step_user(
         self,
