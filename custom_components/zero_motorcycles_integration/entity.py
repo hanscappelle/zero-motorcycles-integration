@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import os
 
 from homeassistant.helpers.entity import DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
@@ -22,7 +23,7 @@ class ZeroEntity(CoordinatorEntity):
         # get data from manifest here instead, is this the way to go?
         # mostly done so we wouldn't have to change version in several places
         info = json.load(
-            open("custom_components/zero_motorcycles_integration/manifest.json")
+            open("{}/{}".format(os.path.dirname(os.path.realpath(__file__)), "manifest.json"))
         )
         LOGGER.debug("loaded info %s", info)
         self._attr_attribution = info["attribution"]
