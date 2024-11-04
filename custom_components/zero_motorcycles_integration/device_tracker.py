@@ -1,6 +1,6 @@
 """Support for tracking devices."""
 
-from homeassistant.components.device_tracker import SourceType.GPS
+from homeassistant.components.device_tracker import TrackerEntity
 from homeassistant.components.device_tracker.config_entry import TrackerEntity
 
 from .const import DOMAIN, LOGGER
