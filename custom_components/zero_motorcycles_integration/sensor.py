@@ -30,7 +30,7 @@ SENSORS = (
         name="mileage",
         icon="mdi:gauge",
         device_class=SensorDeviceClass.DISTANCE,
-        native_unit_of_measurement=UnitOfLength.METERS,
+        native_unit_of_measurement=UnitOfLength.KILOMETERS,
     ),
     SensorEntityDescription(
         key="zero_motorcycles",
