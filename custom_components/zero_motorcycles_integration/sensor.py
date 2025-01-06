@@ -6,6 +6,7 @@ from homeassistant.components.sensor import (
     SensorEntityDescription,
     SensorDeviceClass,
 )
+from homeassistant.const import UnitOfLength, UnitOfSpeed, UnitOfElectricPotential, UnitOfTime, PERCENTAGE
 
 from .const import DOMAIN, LOGGER
 from .coordinator import ZeroCoordinator
@@ -17,6 +18,7 @@ SENSORS = (
         name="soc",
         icon="mdi:battery-charging-50",
         device_class=SensorDeviceClass.BATTERY,
+        native_unit_of_measurement=PERCENTAGE,
     ),
     SensorEntityDescription(
         key="zero_motorcycles",
@@ -28,6 +30,7 @@ SENSORS = (
         name="mileage",
         icon="mdi:gauge",
         device_class=SensorDeviceClass.DISTANCE,
+        native_unit_of_measurement=UnitOfLength.KILOMETERS,
     ),
     SensorEntityDescription(
         key="zero_motorcycles",
@@ -59,6 +62,7 @@ SENSORS = (
         name="velocity",
         icon="mdi:gauge",
         device_class=SensorDeviceClass.SPEED,
+        native_unit_of_measurement=UnitOfSpeed.KILOMETERS_PER_HOUR,
     ),
     SensorEntityDescription(
         key="zero_motorcycles",
@@ -70,12 +74,14 @@ SENSORS = (
         name="main_voltage",
         icon="mdi:car-battery",
         device_class=SensorDeviceClass.VOLTAGE,
+        native_unit_of_measurement=UnitOfElectricPotential.VOLT,
     ),
     SensorEntityDescription(
         key="zero_motorcycles",
         name="chargingtimeleft",
         icon="mdi:battery-clock",
         device_class=SensorDeviceClass.DURATION,
+        native_unit_of_measurement=UnitOfTime.MINUTES,
     ),
 )
 
