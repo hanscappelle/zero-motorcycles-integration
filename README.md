@@ -56,6 +56,10 @@ file and change it to what you prefer.
 
 ## Version History
 
+# 0.5.1
+
+* Bugfix updating missing sensor config
+
 # 0.5.0
 
 Contributions provided by @michavelli-og 
