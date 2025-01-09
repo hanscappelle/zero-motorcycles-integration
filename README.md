@@ -56,6 +56,13 @@ file and change it to what you prefer.
 
 ## Version History
 
+# 0.5.0
+
+Contributions provided by @michavelli-og 
+
+* Update device_tracker.py to use SourceType.GPS instead of deprecated SOURCE_TYPE_GPS
+* Update sensor.py use native unit
+
 # 0.4.0
 
 * created device_tracker for location
