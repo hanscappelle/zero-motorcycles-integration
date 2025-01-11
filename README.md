@@ -56,13 +56,17 @@ file and change it to what you prefer.
 
 ## Version History
 
+# 0.5.2
+
+* bugfix removing `KeyError: 'attribution'` from `entity.py` closing #52
+
 # 0.5.1
 
 * Bugfix updating missing sensor config
 
 # 0.5.0
 
-Contributions provided by @michavelli-og 
+Contributions provided by @michavelli-og ref ticket #52
 
 * Update device_tracker.py to use SourceType.GPS instead of deprecated SOURCE_TYPE_GPS
 * Update sensor.py use native unit
