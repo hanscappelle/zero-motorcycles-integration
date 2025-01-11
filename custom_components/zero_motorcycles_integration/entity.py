@@ -26,7 +26,8 @@ class ZeroEntity(CoordinatorEntity):
             open("{}/{}".format(os.path.dirname(os.path.realpath(__file__)), "manifest.json"))
         )
         LOGGER.debug("loaded info %s", info)
-        self._attr_attribution = info["attribution"]
+        # this was crashing the integration after fixing GPS depreciation
+        #self._attr_attribution = info["attribution"]
 
         if not coordinator.units:
             LOGGER.debug("no units were fetched, no devices to create here")
